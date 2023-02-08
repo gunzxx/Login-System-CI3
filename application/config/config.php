@@ -23,7 +23,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://localhost/06_Login_CI3/';
+$config['base_url'] = 'http://localhost/06_Login_System_CI3/';
 
 /*
 |--------------------------------------------------------------------------

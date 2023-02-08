@@ -18,14 +18,7 @@ class User extends CI_Controller
 
     public function index()
     {
-        redirect('user/dashboard');
-    }
-    
-    public function dashboard()
-    {
-        $data = $this->data;
-        $data['active'] = 'dashboard';
-        $this->template('user/index', $data);
+        redirect('user/profile');
     }
     
     public function profile()
@@ -34,14 +27,12 @@ class User extends CI_Controller
         $data['active'] = 'profile';
         $this->template('user/profile',$data);
     }
-
-    private function template(string $view, $data = [])
+    
+    public function edit()
     {
-        $this->load->view('template/header', $data);
-        $this->load->view('template/sidebar', $data);
-        $this->load->view('template/topbar', $data);
-        $this->load->view($view, $data);
-        $this->load->view('template/footer', $data);
+        $data = $this->data;
+        $data['active'] = 'edit profile';
+        $this->template('user/profile',$data);
     }
 
     public function logout()

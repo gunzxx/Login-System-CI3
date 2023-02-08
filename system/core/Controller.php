@@ -51,6 +51,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @link		https://codeigniter.com/userguide3/general/controllers.html
  */
 class CI_Controller {
+	/**
+	 * CI Template configure by Gunzxx
+	 */
+	protected function template(string $view, $data = [])
+	{
+		$this->load->view('template/header', $data);
+		$this->load->view('template/sidebar', $data);
+		$this->load->view('template/topbar', $data);
+		$this->load->view($view, $data);
+		$this->load->view('template/footer', $data);
+	}
 
 	/**
 	 * Reference to the CI singleton
