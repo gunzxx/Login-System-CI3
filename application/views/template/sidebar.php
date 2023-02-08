@@ -13,6 +13,12 @@
         <!-- Divider -->
         <hr class="sidebar-divider">
 
+        <?php
+        
+        $queryMenu = 1;
+        
+        ?>
+
         <!-- Heading -->
         <div class="sidebar-heading">
             Administrator
