@@ -24,7 +24,7 @@ $menus = $this->db->query($queryMenu)->result_array();
     <hr class="sidebar-divider">
 
     <?php foreach ($menus as $menu) : ?>
-        
+
         <!-- Heading -->
         <div class="sidebar-heading">
             <?= $menu['menu']; ?>
@@ -40,12 +40,12 @@ $menus = $this->db->query($queryMenu)->result_array();
         ";
         $SubMenus = $this->db->query($querySubMenu)->result_array();
         ?>
-        <?php foreach($SubMenus as $submenu) : ?>
+        <?php foreach ($SubMenus as $submenu) : ?>
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item <?= $active == strtolower($submenu['title']) ? 'active' : '' ?>">
                 <a class="nav-link" href="<?= base_url($submenu['url']) ?>">
                     <i class="<?= $submenu['icon']; ?>"></i>
-                    <span><?= strtolower($submenu['title']); ?></span>
+                    <span><?= $submenu['title'] ?></span>
                 </a>
             </li>
         <?php endforeach ?>
@@ -62,7 +62,7 @@ $menus = $this->db->query($queryMenu)->result_array();
 
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
-        <a class="nav-link" href="<?= base_url('user/logout') ?>">
+        <a class="nav-link" style="cursor:pointer;" data-toggle="modal" data-target="#logoutModal">
             <i class="fas fa-fw fa-sign-out-alt"></i>
             <span>Logout</span>
         </a>

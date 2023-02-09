@@ -18,7 +18,7 @@ class User extends CI_Controller
 
     public function index()
     {
-        redirect('user/profile');
+        $this->profile();
     }
     
     public function profile()
