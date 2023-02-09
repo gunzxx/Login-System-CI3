@@ -13,6 +13,8 @@ class SubMenu extends CI_Controller
             return redirect('auth/login');
         }
 
+        $this->load->model("Sub_menu_model","submenu");
+
         $this->data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
     }
 
@@ -24,23 +26,25 @@ class SubMenu extends CI_Controller
     public function manage()
     {
         $data = $this->data;
+
+        $data['submenus'] = $this->submenu->getMenus();
         $data['menus'] = $this->db->get('menu')->result_array();
 
         $data['active'] = 'sub menu management';
 
-        $this->form_validation->set_rules('menu','Menu',"required|min_length[3]|is_unique[menu.menu]",[
-            'required'=>"Menu is required!",
-            'min_length' => "The Menu field must be 3 characters length.",
-            "is_unique" => "Menu exist!",
-        ]);
+        $this->form_validation->set_rules('title','Title',"required");
+        $this->form_validation->set_rules('menu_id','Menu',"required");
+        $this->form_validation->set_rules('url','url',"required");
+        $this->form_validation->set_rules('icon','icon',"required");
 
+        // var_dump($this->input->post());die;
         if($this->form_validation->run()==false){
-            $this->template('menu/manage',$data);
+            $this->template('submenu/manage',$data);
         }
         else{
-            $this->db->insert('menu',['menu' => ucwords($this->input->post('menu'))]);
+            $this->db->insert('sub_menu',$this->input->post());
             $this->session->set_flashdata('message', 'Menu has been added!');
-            redirect('menu/manage');
+            redirect('submenu/manage');
         }
     }
 
@@ -50,10 +54,10 @@ class SubMenu extends CI_Controller
             echo json_encode("gagal");
         }
         $id = $this->input->post('id');
-        $this->db->delete('menu',['id' => $id]);
+        $this->db->delete('sub_menu',['id' => $id]);
 
-        $data['menus'] = $this->db->get('menu')->result_array();
+        $data['submenus'] = $this->submenu->getMenus();
         
-        $this->load->view('menu/menus', $data);
+        $this->load->view('submenu/deletesubmenu', $data);
     }
 }

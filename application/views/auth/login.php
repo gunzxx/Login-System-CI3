@@ -13,7 +13,7 @@
 
                             <?php if ($this->session->flashdata('logout')) : ?>
                                 <div class="alert alert-danger alert-dismissible fade show p-3" role="alert">
-                                    <p><?= $this->session->flashdata('logout') ?>!</p>
+                                    <p class="m-0"><?= $this->session->flashdata('logout') ?>!</p>
                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
@@ -22,7 +22,7 @@
 
                             <?php if ($this->session->flashdata('login')) : ?>
                                 <div class="alert alert-danger alert-dismissible fade show p-3" role="alert">
-                                    <p><?= $this->session->flashdata('login') ?>!</p>
+                                    <p class="m-0"><?= $this->session->flashdata('login') ?>!</p>
                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
@@ -31,7 +31,7 @@
 
                             <?php if ($this->session->flashdata('register')) : ?>
                                 <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                    <p>Register <strong><?= $this->session->flashdata('register') ?></strong>, please login!</p>
+                                    <p class="m-0">Register <strong><?= $this->session->flashdata('register') ?></strong>, please login!</p>
                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
