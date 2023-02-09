@@ -9,25 +9,20 @@ class SubMenu extends CI_Controller
     {
         parent::__construct();
 
-        if (!($this->session->userdata('email') && $this->session->userdata('role_id'))) {
-            return redirect('auth/login');
-        }
+        is_login();
+        is_admin();
 
-        if ($this->session->userdata('role_id') != 1) {
-            return redirect('user');
-        }
-
-        $this->load->model("Sub_menu_model","submenu");
+        $this->load->model("Submenu_model","submenu");
 
         $this->data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
     }
 
     public function index()
     {
-        $this->manage();
+        $this->submenu();
     }
     
-    public function manage()
+    public function submenu()
     {
         $data = $this->data;
 
@@ -46,7 +41,7 @@ class SubMenu extends CI_Controller
             $this->template('submenu/manage',$data);
         }
         else{
-            $this->db->insert('sub_menu',$this->input->post());
+            $this->db->insert('submenu',$this->input->post());
             $this->session->set_flashdata('message', 'Menu has been added!');
             redirect('submenu/manage');
         }
@@ -58,7 +53,7 @@ class SubMenu extends CI_Controller
             echo json_encode("gagal");
         }
         $id = $this->input->post('id');
-        $this->db->delete('sub_menu',['id' => $id]);
+        $this->db->delete('submenu',['id' => $id]);
 
         $data['submenus'] = $this->submenu->getMenus();
         

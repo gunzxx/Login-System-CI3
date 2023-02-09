@@ -9,13 +9,8 @@ class Menu extends CI_Controller
     {
         parent::__construct();
 
-        if (!($this->session->userdata('email') && $this->session->userdata('role_id'))) {
-            return redirect('auth/login');
-        }
-
-        if ($this->session->userdata('role_id') != 1) {
-            return redirect('user');
-        }
+        is_login();
+        is_admin();
 
         $this->data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
     }

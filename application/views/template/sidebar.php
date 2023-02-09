@@ -33,10 +33,10 @@ $menus = $this->db->query($queryMenu)->result_array();
         <?php
         $querySubMenu = "
                 SELECT *
-                FROM menu JOIN sub_menu
-                ON menu.id = sub_menu.menu_id
-                WHERE sub_menu.menu_id = {$menu['id']} AND sub_menu.is_active = 1
-                ORDER BY sub_menu.menu_id ASC
+                FROM menu JOIN submenu
+                ON menu.id = submenu.menu_id
+                WHERE submenu.menu_id = {$menu['id']} AND submenu.is_active = 1
+                ORDER BY submenu.menu_id ASC
         ";
         $SubMenus = $this->db->query($querySubMenu)->result_array();
         ?>

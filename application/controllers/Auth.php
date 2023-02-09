@@ -7,16 +7,13 @@ class Auth extends CI_Controller
 	{
 		parent::__construct();
 
-		if ($this->session->userdata('email') && $this->session->userdata('role_id')) {
-			return redirect('user');
-		}
-
-		$this->load->library('form_validation');
+		is_has_login();
 	}
 
 	public function index()
 	{
-		$this->login();
+		// $this->login();
+		redirect('auth/login');
 	}
 	
 	public function login()

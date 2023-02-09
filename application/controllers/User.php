@@ -9,9 +9,7 @@ class User extends CI_Controller
     {
         parent::__construct();
 
-        if (!($this->session->userdata('email') && $this->session->userdata('role_id'))) {
-            return redirect('auth/login');
-        }
+        is_login();
 
         $this->data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
     }
@@ -40,6 +38,6 @@ class User extends CI_Controller
         $this->session->unset_userdata('email');
         $this->session->unset_userdata('role_id');
         $this->session->set_flashdata('logout', 'You has been logout!');
-        redirect('auth/login');
+        redirect('auth');
     }
 }

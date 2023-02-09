@@ -42,14 +42,14 @@
                     <?php foreach ($submenus as $k => $submenu) : ?>
                         <tr style="width: 100%;">
                             <th style="width:5%;" scope=" row"><?= $k + 1; ?></th>
-                            <td style="width:15%;"><?=ucwords($submenu['title']); ?></td>
-                            <td style="width:10%;"><?=ucwords($submenu['menu']); ?></td>
-                            <td style="width:10%;"><?=$submenu['url']; ?></td>
-                            <td style="width:10%;"><?=$submenu['icon']; ?></td>
-                            <td style="width:10%;"><?=$submenu['is_active']; ?></td>
+                            <td style="width:15%;"><?= ucwords($submenu['title']); ?></td>
+                            <td style="width:10%;"><?= ucwords($submenu['menu']); ?></td>
+                            <td style="width:10%;"><?= $submenu['url']; ?></td>
+                            <td style="width:10%;"><?= $submenu['icon']; ?></td>
+                            <td style="width:10%;"><?= $submenu['is_active']; ?></td>
                             <td style="width:100%;display:flex;justify-content:space-evenly;">
                                 <a class="badge badge-success" href="<?= base_url('submenu/edit'); ?>">Edit</a>
-                                <button onclick="return confirm('Menu dan semua submenu akan terhapus,\nYakin hapus?')" class="badge badge-danger border-0 outline-none delete" value="<?= $submenu['id'] ?>" type="button">Delete</button>
+                                <button class="badge badge-danger border-0 outline-none delete" value="<?= $submenu['id'] ?>" type="button">Delete</button>
                             </td>
                         </tr>
                     <?php endforeach ?>
@@ -116,16 +116,23 @@
 
     deleteBtn.forEach(dltBtn => {
         dltBtn.addEventListener('click', function() {
-            $.ajax({
-                'url': "<?= base_url('submenu/delete'); ?>",
-                'method': "POST",
-                "data": {
-                    id: dltBtn.value
-                },
-                "success": function(e) {
-                    document.getElementById("menus").innerHTML = e;
-                }
-            })
+            let lanjut = confirm('Submenu akan terhapus,\nYakin hapus?');
+            if(lanjut == true)
+            {
+                $.ajax({
+                    url: "<?= base_url('submenu/delete'); ?>",
+                    method: "POST",
+                    data: {
+                        id: dltBtn.value
+                    },
+                    success: function(e) {
+                        document.getElementById("menus").innerHTML = e;
+                    },
+                    error : function(xhr,status,error){
+                        console.log(arguments);
+                    }
+                })
+            }
         })
     });
 </script>
