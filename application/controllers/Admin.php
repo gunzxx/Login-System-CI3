@@ -23,7 +23,7 @@ class Admin extends CI_Controller
 
     public function index()
     {
-        $this->dashboard();
+        redirect('admin/dashboard');
     }
     
     public function dashboard()

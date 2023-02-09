@@ -13,6 +13,10 @@ class SubMenu extends CI_Controller
             return redirect('auth/login');
         }
 
+        if ($this->session->userdata('role_id') != 1) {
+            return redirect('user');
+        }
+
         $this->load->model("Sub_menu_model","submenu");
 
         $this->data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
