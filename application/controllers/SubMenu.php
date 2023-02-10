@@ -43,7 +43,7 @@ class SubMenu extends CI_Controller
         else{
             $this->db->insert('submenu',$this->input->post());
             $this->session->set_flashdata('message', 'Menu has been added!');
-            redirect('submenu/manage');
+            redirect('submenu');
         }
     }
 
@@ -57,6 +57,6 @@ class SubMenu extends CI_Controller
 
         $data['submenus'] = $this->submenu->getMenus();
         
-        $this->load->view('submenu/deletesubmenu', $data);
+        $this->load->view('submenu/ajax/delete', $data);
     }
 }

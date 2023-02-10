@@ -2,7 +2,8 @@
 <div class="container-fluid">
 
     <!-- Page Heading -->
-    <h1 class="h3 mb-4 text-gray-800"><?= ucwords($active) ?></h1>
+    <h1 class="h3 mb-4 text-gray-800"><?= isset($title) ? ucwords($title) : ucwords($active) ?></h1>
+
     <?php if (form_error('title')) : ?>
         <div class="alert alert-warning alert-dismissible fade show" role="alert">
             <?= form_error('title', '<small class="text-danger p-0">', '</small>') ?>
@@ -47,9 +48,9 @@
                             <td style="width:10%;"><?= $submenu['url']; ?></td>
                             <td style="width:10%;"><?= $submenu['icon']; ?></td>
                             <td style="width:10%;"><?= $submenu['is_active']; ?></td>
-                            <td style="width:100%;display:flex;justify-content:space-evenly;">
-                                <a class="badge badge-success" href="<?= base_url('submenu/edit'); ?>">Edit</a>
-                                <button class="badge badge-danger border-0 outline-none delete" value="<?= $submenu['id'] ?>" type="button">Delete</button>
+                            <td style="width:100%;display:flex;justify-content:space-evenly;align-items:center;">
+                                <a class="badge badge-success p-2" href="<?= base_url('submenu/edit'); ?>">Edit</a>
+                                <button class="badge badge-danger border-0 outline-none delete p-2" value="<?= $submenu['id'] ?>" type="button">Delete</button>
                             </td>
                         </tr>
                     <?php endforeach ?>
@@ -68,18 +69,18 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="newSubMenuLabel">Add menu</h5>
+                <h5 class="modal-title" id="newSubMenuLabel">Add sub menu</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="<?= base_url('submenu/manage') ?>" method="post">
+            <form action="<?= base_url('submenu') ?>" method="post">
                 <div class="modal-body">
                     <div class="form-group">
                         <input type="text" class="form-control" id="title" name="title" placeholder="Submenu title">
                     </div>
                     <div class="form-group">
-                        <label for="menu_id">Select Menu : </label>
+                        <label for="menu_id">For Menu : </label>
                         <select name="menu_id" id="menu_id">
                             <?php foreach ($menus as $menu) : ?>
                                 <option value="<?= $menu['id']; ?>"><?= $menu['menu']; ?></option>
@@ -117,8 +118,8 @@
     deleteBtn.forEach(dltBtn => {
         dltBtn.addEventListener('click', function() {
             let lanjut = confirm('Submenu akan terhapus,\nYakin hapus?');
-            if(lanjut == true)
-            {
+
+            if (lanjut == true) {
                 $.ajax({
                     url: "<?= base_url('submenu/delete'); ?>",
                     method: "POST",
@@ -128,7 +129,7 @@
                     success: function(e) {
                         document.getElementById("menus").innerHTML = e;
                     },
-                    error : function(xhr,status,error){
+                    error: function(xhr, status, error) {
                         console.log(arguments);
                     }
                 })

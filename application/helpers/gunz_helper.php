@@ -1,11 +1,17 @@
 <?php
 
-function dd($variabel){
-    echo $variabel;die;
-}
-
-function dds($variabel){
-    var_dump($variabel);die;
+function check_access(int $role_id, int $menu_id)
+{
+    $ci = get_instance();
+    $ci->db->where("role_id",$role_id);
+    $ci->db->where("menu_id",$menu_id);
+    $tes = $ci->db->get('access_menu',1);
+    if($tes->num_rows()<1){
+        return false;
+    }
+    else{
+        return true;
+    }
 }
 
 function is_has_login()
@@ -46,4 +52,17 @@ function is_admin()
     if ($ci->session->userdata('role_id') != 1) {
         return redirect('user');
     }
+}
+
+
+function dd($variabel)
+{
+    echo $variabel;
+    die;
+}
+
+function dds($variabel)
+{
+    var_dump($variabel);
+    die;
 }

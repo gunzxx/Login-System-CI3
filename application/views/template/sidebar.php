@@ -42,8 +42,8 @@ $menus = $this->db->query($queryMenu)->result_array();
         ?>
         <?php foreach ($SubMenus as $submenu) : ?>
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item <?= $active == strtolower($submenu['title']) ? 'active' : '' ?>">
-                <a class="nav-link" href="<?= base_url($submenu['url']) ?>">
+            <li class="nav-item <?= strtolower($active) == strtolower($submenu['title']) ? 'active' : '' ?>">
+                <a class="nav-link py-2" href="<?= base_url($submenu['url']) ?>">
                     <i class="<?= $submenu['icon']; ?>"></i>
                     <span><?= $submenu['title'] ?></span>
                 </a>

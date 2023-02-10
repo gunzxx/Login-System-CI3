@@ -52,8 +52,7 @@ class Menu extends CI_Controller
         $this->db->delete('menu',['id' => $id]);
 
         $data['menus'] = $this->db->get('menu')->result_array();
-        // var_dump($data['menus']);die;
-        // $this->session->set_flashdata('message', 'Menu has been deleted!');
-        $this->load->view('menu/menus', $data);
+        
+        $this->load->view('menu/ajax/delete', $data);
     }
 }

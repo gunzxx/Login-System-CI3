@@ -9,6 +9,7 @@ class Submenu_model extends CI_Model{
                     FROM submenu
                     JOIN menu
                     ON submenu.menu_id = menu.id
+                    ORDER BY menu.id
                 ";
         return $this->db->query($query)->result_array();
     }
