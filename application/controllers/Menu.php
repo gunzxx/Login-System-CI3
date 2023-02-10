@@ -49,6 +49,8 @@ class Menu extends CI_Controller
             echo json_encode("gagal");
         }
         $id = $this->input->post('id');
+        $this->db->delete('submenu',['menu_id' => $id]);
+        $this->db->delete('access_menu',['menu_id' => $id]);
         $this->db->delete('menu',['id' => $id]);
 
         $data['menus'] = $this->db->get('menu')->result_array();

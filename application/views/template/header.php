@@ -21,6 +21,9 @@
     <!-- Jquery -->
     <script src="<?= base_url('assets') ?>/vendor/jquery/jquery.min.js"></script>
 
+    <!-- Custom scripts for all pages-->
+    <script src="<?= base_url('assets') ?>/js/sb-admin-2.min.js"></script>
+
 </head>
 
 <body class="bg-gradient-primary" id="page-top">
