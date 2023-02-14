@@ -11,6 +11,8 @@ class User extends CI_Controller
 
         is_login();
 
+        $this->load->model("User_model","userModel");
+
         $this->data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
     }
 
@@ -21,7 +23,7 @@ class User extends CI_Controller
     
     public function profile()
     {
-        $data = $this->data;
+        $data['user'] = $this->userModel->getUser();
         $data['active'] = 'profile';
         $this->template('user/profile',$data);
     }
@@ -70,6 +72,13 @@ class User extends CI_Controller
             $this->session->set_flashdata('message', 'Data has been updated!');
             redirect('user/edit');
         }
+    }
+
+    public function password()
+    {
+        $data = $this->data;
+        $data['active'] = 'change password';
+        $this->template('user/password', $data);
     }
 
     public function logout()

@@ -32,16 +32,21 @@ function is_login()
     else
     {
         $role_id = $ci->session->userdata('role_id');
-        $menu = $ci->uri->segment(1);
-        if($menu == "submenu"){$menu = "menu";};
-
-        $queryMenu = $ci->db->get_where('menu',['menu'=>$menu])->row_array();
-        $menu_id = $queryMenu['id'];
-
-        $accessMenu = $ci->db->get_where('access_menu',["role_id"=>$role_id, "menu_id"=>$menu_id]);
-        if($accessMenu->num_rows()<1)
+        if($role_id != 1)
         {
-            return redirect('page/block');
+            $menu = $ci->uri->segment(1);
+            if($menu != ''){
+                if($menu == "submenu"){$menu = "menu";};
+        
+                $queryMenu = $ci->db->get_where('menu',['menu'=>$menu])->row_array();
+                $menu_id = $queryMenu['id'];
+        
+                $accessMenu = $ci->db->get_where('access_menu',["role_id"=>$role_id, "menu_id"=>$menu_id]);
+                if($accessMenu->num_rows()<1)
+                {
+                    return redirect('page/block');
+                }
+            }
         }
     }
 }

@@ -10,7 +10,6 @@ class Menu extends CI_Controller
         parent::__construct();
 
         is_login();
-        is_admin();
 
         $this->data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
     }

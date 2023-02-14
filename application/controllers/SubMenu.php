@@ -10,7 +10,6 @@ class SubMenu extends CI_Controller
         parent::__construct();
 
         is_login();
-        is_admin();
 
         $this->load->model("Submenu_model","submenu");
 
