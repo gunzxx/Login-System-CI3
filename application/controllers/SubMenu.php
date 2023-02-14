@@ -30,10 +30,10 @@ class SubMenu extends CI_Controller
 
         $data['active'] = 'sub menu management';
 
-        $this->form_validation->set_rules('title','Title',"required");
-        $this->form_validation->set_rules('menu_id','Menu',"required");
-        $this->form_validation->set_rules('url','url',"required");
-        $this->form_validation->set_rules('icon','icon',"required");
+        $this->form_validation->set_rules('title','Title',"required|trim");
+        $this->form_validation->set_rules('menu_id','Menu',"required|trim");
+        $this->form_validation->set_rules('url','url',"required|trim");
+        $this->form_validation->set_rules('icon','icon',"required|trim");
 
         // var_dump($this->input->post());die;
         if($this->form_validation->run()==false){

@@ -26,7 +26,7 @@ class Menu extends CI_Controller
 
         $data['active'] = 'menu management';
 
-        $this->form_validation->set_rules('menu','Menu',"required|min_length[3]|is_unique[menu.menu]",[
+        $this->form_validation->set_rules('menu','Menu',"required|trim|min_length[3]|is_unique[menu.menu]",[
             'required'=>"Menu is required!",
             'min_length' => "The Menu field must be 3 characters length.",
             "is_unique" => "Menu exist!",

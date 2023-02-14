@@ -77,8 +77,42 @@ class User extends CI_Controller
     public function password()
     {
         $data = $this->data;
+        $savePassword = $data['user']['password'];
+        $user_id = $data['user']['id'];
         $data['active'] = 'change password';
-        $this->template('user/password', $data);
+
+        // dd($savePassword);
+        // dd(password_needs_rehash($savePassword,PASSWORD_DEFAULT));
+        
+        $this->form_validation->set_rules('oldpassword', 'Old Password', 'trim');
+        $this->form_validation->set_rules('password1', 'New Password', 'required|trim|min_length[3]|matches[password2]');
+        $this->form_validation->set_rules('password2', 'Repeat Password', 'required|trim|min_length[3]|matches[password1]');
+
+        if ($this->form_validation->run() == false) {
+            $this->template('user/password', $data);
+        }
+        else {
+            $oldPassword = $this->input->post('oldpassword');
+            $password = $this->input->post('password1');
+
+            if(!(password_verify($oldPassword, $savePassword))){
+                $this->session->set_flashdata('message','Wrong current password!');
+                return redirect("user/password");
+            }
+            else{
+                if(password_verify($password, $savePassword)) {
+                    $this->session->set_flashdata('message',"New password can't be assign!");
+                    return redirect("user/password");
+                }
+                else{
+                    $passwordHash = password_hash($password,PASSWORD_DEFAULT);
+                    $this->db->update('user',['password'=>$passwordHash],['id'=>$user_id]);
+                    
+                    $this->session->set_flashdata('message', "Password has been update!");
+                    return redirect("user/password");
+                }
+            }
+        }
     }
 
     public function logout()

@@ -54,7 +54,7 @@ class Admin extends CI_Controller
         if(!$this->input->post()){
             return redirect('user');
         }
-        $this->form_validation->set_rules('name',"Name", 'required|min_length[3]|is_unique[role.role]',[
+        $this->form_validation->set_rules('name',"Name", 'required|trim|min_length[3]|is_unique[role.role]',[
             "required"=>"Role name is required",
             "min_length"=>"Role min length 3"
         ]);
