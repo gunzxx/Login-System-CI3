@@ -8,9 +8,9 @@
     <!-- Flash message -->
     <?php if ($this->session->flashdata('message')) : ?>
         <div class="col-10 p-0 pr-1">
-            <div class="alert alert-<?=strpos($this->session->flashdata('message'),'update!') ? "success" : "warning" ?> alert-dismissible fade show" role="alert">
+            <div class="alert alert-<?= strpos($this->session->flashdata('message'), 'update!') ? "success" : "warning" ?> alert-dismissible fade show" role="alert">
                 <small class="text-black p-0"><?= $this->session->flashdata('message') ?></small>
-    
+
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -46,3 +46,9 @@
 
 </div>
 <!-- /.container-fluid -->
+
+<!-- Script alert animate -->
+<script>
+    // $('.alert').alert().delay(3000).slideUp('slow');
+</script>
+<!-- End Script alert animate -->

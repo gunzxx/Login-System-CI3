@@ -12,8 +12,8 @@
                             </div>
 
                             <?php if ($this->session->flashdata('logout')) : ?>
-                                <div class="alert alert-danger alert-dismissible fade show p-3" role="alert">
-                                    <p class="m-0"><?= $this->session->flashdata('logout') ?>!</p>
+                                <div class="alert alert-danger alert-dismissible fade show d-flex align-items-center" role="alert">
+                                    <p class="m-0" style="width: 90%;"><?= $this->session->flashdata('logout') ?>!</p>
                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
@@ -21,8 +21,17 @@
                             <?php endif ?>
 
                             <?php if ($this->session->flashdata('login')) : ?>
-                                <div class="alert alert-danger alert-dismissible fade show p-3" role="alert">
-                                    <p class="m-0"><?= $this->session->flashdata('login') ?>!</p>
+                                <div class="alert alert-danger alert-dismissible fade show d-flex align-items-center" role="alert">
+                                    <p class="m-0" style="width: 90%;"><?= $this->session->flashdata('login') ?>!</p>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            <?php endif ?>
+
+                            <?php if ($this->session->flashdata('error')) : ?>
+                                <div class="alert alert-warning alert-dismissible fade show d-flex align-items-center" role="alert">
+                                    <p class="m-0" style="width: 90%;"><?= $this->session->flashdata('error') ?></p>
                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
@@ -30,8 +39,8 @@
                             <?php endif ?>
 
                             <?php if ($this->session->flashdata('register')) : ?>
-                                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                    <p class="m-0">Register <strong><?= $this->session->flashdata('register') ?></strong>, please login!</p>
+                                <div class="alert alert-success alert-dismissible fade show d-flex align-items-center" role="alert">
+                                    <p class="m-0" style="width: 90%;"><?= $this->session->flashdata('register') ?></p>
                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
