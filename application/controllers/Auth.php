@@ -90,9 +90,9 @@ class Auth extends CI_Controller
 			$data = [
 				'nickname' => htmlspecialchars($this->input->post('nickname')),
 				'email' => htmlspecialchars($postEmail),
-				'image' => "default.jpg",
+				'image' => "default.svg",
 				'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
-				'role_id' => 1,
+				'role_id' => 2,
 				'is_active' => 0,
 				'date_created' => time(),
 			];
@@ -106,10 +106,10 @@ class Auth extends CI_Controller
 			];
 			// dd($token);
 
+			$this->_sendEmail($token,'verify');
+
 			$this->db->insert('user',$data);
 			$this->db->insert('user_token',$userToken);
-
-			$this->_sendEmail($token,'verify');
 
 			$this->session->set_flashdata('register','Register success, please verify your email!');
 			redirect('auth/login');

@@ -22,7 +22,7 @@
 
                             <?php if ($this->session->flashdata('login')) : ?>
                                 <div class="alert alert-danger alert-dismissible fade show d-flex align-items-center" role="alert">
-                                    <p class="m-0" style="width: 90%;"><?= $this->session->flashdata('login') ?>!</p>
+                                    <p class="m-0" style="width: 90%;"><?= $this->session->flashdata('login') ?></p>
                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
