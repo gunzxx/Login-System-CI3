@@ -1,5 +1,4 @@
 <div class="container-fluid">
-
     <!-- Outer Row -->
     <div class="row justify-content-center align-items-center" style="width: 100%; height:100vh;">
         <div class="col-lg-5 col-sm-6">
@@ -8,7 +7,7 @@
                     <div class="row">
                         <div class="col-lg-12 p-5">
                             <div class="text-center">
-                                <h1 class="h4 text-gray-900 mb-4">Login</h1>
+                                <h1 class="h4 text-gray-900 mb-4">Reset password</h1>
                             </div>
 
                             <?php if ($this->session->flashdata('logout')) : ?>
@@ -47,14 +46,17 @@
                                 </div>
                             <?php endif ?>
 
-                            <form action="<?= base_url() ?>auth/login" method="post">
+                            <form method="post">
                                 <div class="form-group">
-                                    <input value="<?= set_value('email') ?>" autocomplete="off" type="email" class="form-control form-control-user" id="email" name="email" placeholder="Enter Email Address...">
-                                    <?= form_error('email', '<small class="text-danger p-0">', '</small>') ?>
-                                </div>
-                                <div class="form-group">
-                                    <input autocomplete="off" type="password" class="form-control form-control-user" id="password" name="password" placeholder="Password">
+                                    <label for="password">New password</label>
+                                    <input value="<?= set_value('password') ?>" autocomplete="off" type="text" class="form-control form-control-user" id="password" name="password" placeholder="Enter password">
                                     <?= form_error('password', '<small class="text-danger p-0">', '</small>') ?>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="password2">Retype password</label>
+                                    <input value="<?= set_value('password2') ?>" autocomplete="off" type="text" class="form-control form-control-user" id="password2" name="password2" placeholder="Enter password again">
+                                    <?= form_error('password2', '<small class="text-danger p-0">', '</small>') ?>
                                 </div>
 
                                 <button type="submit" class="btn btn-primary btn-user btn-block">
@@ -74,9 +76,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
-
     </div>
-
 </div>

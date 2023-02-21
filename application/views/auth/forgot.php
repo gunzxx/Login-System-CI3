@@ -8,7 +8,7 @@
                     <div class="row">
                         <div class="col-lg-12 p-5">
                             <div class="text-center">
-                                <h1 class="h4 text-gray-900 mb-4">Login</h1>
+                                <h1 class="h4 text-gray-900 mb-4">Forgot Password</h1>
                             </div>
 
                             <?php if ($this->session->flashdata('logout')) : ?>
@@ -38,34 +38,30 @@
                                 </div>
                             <?php endif ?>
 
-                            <?php if ($this->session->flashdata('success')) : ?>
+                            <?php if ($this->session->flashdata('register')) : ?>
                                 <div class="alert alert-success alert-dismissible fade show d-flex align-items-center" role="alert">
-                                    <p class="m-0" style="width: 90%;"><?= $this->session->flashdata('success') ?></p>
+                                    <p class="m-0" style="width: 90%;"><?= $this->session->flashdata('register') ?></p>
                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
                             <?php endif ?>
 
-                            <form action="<?= base_url() ?>auth/login" method="post">
+                            <form action="<?= base_url() ?>auth/forgot_password" method="post">
                                 <div class="form-group">
-                                    <input value="<?= set_value('email') ?>" autocomplete="off" type="email" class="form-control form-control-user" id="email" name="email" placeholder="Enter Email Address...">
+                                    <input autofocus value="<?= set_value('email') ?>" type="email" class="form-control form-control-user" id="email" name="email" placeholder="Enter Email Address...">
                                     <?= form_error('email', '<small class="text-danger p-0">', '</small>') ?>
-                                </div>
-                                <div class="form-group">
-                                    <input autocomplete="off" type="password" class="form-control form-control-user" id="password" name="password" placeholder="Password">
-                                    <?= form_error('password', '<small class="text-danger p-0">', '</small>') ?>
                                 </div>
 
                                 <button type="submit" class="btn btn-primary btn-user btn-block">
-                                    Login
+                                    Send
                                 </button>
                             </form>
 
                             <hr>
 
                             <div class="text-center">
-                                <a class="small" href="<?= base_url() ?>auth/forgot_password">Forgot Password?</a>
+                                <a class="small" href="<?= base_url() ?>auth">Back to login</a>
                             </div>
                             <div class="text-center">
                                 <a class="small" href="<?= base_url() ?>auth/register">Create an Account!</a>
@@ -78,5 +74,4 @@
         </div>
 
     </div>
-
 </div>
