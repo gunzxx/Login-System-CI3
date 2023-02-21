@@ -11,15 +11,6 @@
                                 <h1 class="h4 text-gray-900 mb-4">Login</h1>
                             </div>
 
-                            <?php if ($this->session->flashdata('logout')) : ?>
-                                <div class="alert alert-danger alert-dismissible fade show d-flex align-items-center" role="alert">
-                                    <p class="m-0" style="width: 90%;"><?= $this->session->flashdata('logout') ?>!</p>
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                            <?php endif ?>
-
                             <?php if ($this->session->flashdata('login')) : ?>
                                 <div class="alert alert-danger alert-dismissible fade show d-flex align-items-center" role="alert">
                                     <p class="m-0" style="width: 90%;"><?= $this->session->flashdata('login') ?></p>

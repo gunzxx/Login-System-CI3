@@ -12,8 +12,8 @@ class Auth extends CI_Controller
 
 	public function index()
 	{
-		// $this->login();
-		redirect('auth/login');
+		$this->login();
+		// redirect('auth/login');
 	}
 	
 	public function login()
@@ -204,13 +204,13 @@ class Auth extends CI_Controller
 	public function reset()
 	{
 		if (!($this->input->get('email') && $this->input->get('email'))) {
-			redirect('auth');
+			redirect('auth/login');
 		}
 
 		$email = $this->input->get('email');
 		$token = $this->input->get('token');
 
-		$user_token = $this->db->get_where('user_token', ['token' => $token])->row_array();
+		$user_token = $this->db->get_where('user_token', ['token' => $token,'email'=>$email])->row_array();
 		
 		if ($user_token) {
 			$this->form_validation->set_rules("password", "Password", "trim|min_length[3]|required|matches[password2]",[
@@ -277,7 +277,7 @@ class Auth extends CI_Controller
 
 		else if($to == 'forgot'){
 			$this->email->subject("Account Verification");
-			$this->email->message('<div style="height:400px;width:100%;background-color:#fff;"><p>Kode verifikasi anda adalah : </p><a style="background-color: lightblue; box-shadow: 0 0 3px #fff; text-decoration:none; color: #fff;padding: 10px;min-height:40px;border-radius: 10px;" href="' . base_url() . 'auth/reset?email=' . $this->input->post('email') . '&token=' . $token . '">Activate</a></div>');
+			$this->email->message('<div style="height:400px;width:100%;background-color:#fff;"><p>Click this link to reset your passwordz : </p><a style="background-color: lightblue; box-shadow: 0 0 3px #fff; text-decoration:none; color: #fff;padding: 10px;min-height:40px;border-radius: 10px;" href="' . base_url() . 'auth/reset?email=' . $this->input->post('email') . '&token=' . $token . '">Reset</a></div>');
 		}
 
 		// $send = $this->email->send();

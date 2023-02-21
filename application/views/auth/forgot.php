@@ -61,7 +61,7 @@
                             <hr>
 
                             <div class="text-center">
-                                <a class="small" href="<?= base_url() ?>auth">Back to login</a>
+                                <a class="small" href="<?= base_url() ?>auth/login">Back to login</a>
                             </div>
                             <div class="text-center">
                                 <a class="small" href="<?= base_url() ?>auth/register">Create an Account!</a>

@@ -119,7 +119,7 @@ class User extends CI_Controller
     {
         $this->session->unset_userdata('email');
         $this->session->unset_userdata('role_id');
-        $this->session->set_flashdata('logout', 'You has been logout!');
-        redirect('auth');
+        $this->session->set_flashdata('error', 'You has been logout!');
+        redirect('auth/login');
     }
 }
